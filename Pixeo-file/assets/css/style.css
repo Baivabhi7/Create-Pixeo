@@ -157,10 +157,8 @@ body{
   #REUSED STYLE
 \*-----------------------------------*/
 
-.search-wrapper::before{
-  position:absolute;
-  top:14px;
-  right:12px;
+.search-wrapper::before
+.load-more::before {
   content:"";
   width: 20px;
   height: 20px;
@@ -171,7 +169,25 @@ body{
    display:none;
 }
 
+.search-wrapper::before{
+  position:absolute;
+  top:14px;
+  right:12px;
+}
+
 .search-wrapper.searching::before {display: block; }
+
+.load-more {
+  background-color: var(--primary-variant);
+  margin-inline: auto;
+  margin-block: 36px 60px;
+}
+
+.load-more:is(:hover, :focus-visible) {
+  --primary-variant: hsla(350, 67%,39%,1);
+}
+
+.load-more.loading::before {display: block;}
 
 @keyframes loading{
   0% {transform: rotate(0); }
@@ -277,8 +293,25 @@ video-box{
   aspect-ratio: 16 / 9;
   flex-shrink: 0;
   max-width: 500px;
-  width: calc(100%-40px);
+  width: calc(100% - 40px);
 }
+
+.container::after,
+.search-modal::after {  
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: linear-gradient(var(--bottom-overlay));
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+
+
 
 /*-----------------------------------*\
   #HEADER
@@ -488,17 +521,7 @@ transition: var(--transition-long);
   z-index: 1;
 }
 
-.container::after{
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background-image: linear-gradient(var(--bottom-overlay));
-  z-index: 1;
-  pointer-events: none;
-}
+
 
 
 /**
@@ -681,6 +704,18 @@ MOVIE-LIST**/
   #MOVIE LIST PAGE
 \*-----------------------------------*/
 
+.genre-list .title-wrapper { margin-block-end: 56px; }
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  column-gap: 16px;
+  row-gap: 20px;
+}
+
+:is(.genre-list, .search-modal) :is(.movie-card, .card-banner) {
+  width: 100%; 
+}
 
 
 
@@ -689,9 +724,26 @@ MOVIE-LIST**/
   #SEARCH MODAL
 \*-----------------------------------*/
 
+.search-modal {
+  position: fixed;
+  top: 96px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--surface);
+  padding: 50px 24px;
+  overflow-y: overlay;
+  z-index: 4;
+  display: none;
+}
 
+.search-modal.active { display: block;}
 
-
+.search-modal .label {
+  color: var(--primary-variant);
+  font-weight: var(--weight-bold);
+  margin-block-end: 8px;
+}
 
 /*-----------------------------------*\
   #MEDIA QUERIES
