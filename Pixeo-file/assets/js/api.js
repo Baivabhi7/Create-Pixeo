@@ -1,7 +1,7 @@
  'use strict'
 
- const api_key = '';
- const imageBaseURL = '';
+ const api_key = '9196b8ca8f44706012caa8e6845a685e';
+ const imageBaseURL = 'https://image.tmdb.org/t/p/';
 
  /*
  fetch data from a server using the 'url'and passes the

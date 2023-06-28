@@ -5,7 +5,8 @@ import { api_key, fetchDataFromServer } from "./api.js";
 export function sidebar() {
     const genreList={};
 
-    fetchDataFromServer(``, function ({genres}) {
+    fetchDataFromServer(`https://api.themoviedb.org/3/genre/
+    movie/list?api_key=${api_key}`, function ({genres}) {
         for(const {id, name } of genres){
             genreList[id] = name;
         }
@@ -17,11 +18,11 @@ export function sidebar() {
     sidebarInner.classList.add("sidebar-inner");
 
     sidebarInner.innerHTML = html`
-    
     <div class="sidebar-list">
     <p class="title">Genre</p>
 
-   </div>
+    
+</div>
 
 <div class="sidebar-list">
     <p class="title">Language</p>
@@ -52,7 +53,10 @@ export function sidebar() {
     <img src="./assets/images/tmdb-logo.svg" width="'130"
     height="17" alt="the movie database logo">
 </div>
-`;
+
+    `;
+    
+    
 
 const genreLink = function() {
 
@@ -67,7 +71,7 @@ const genreLink = function() {
            // ("with_genres=${genreId}", "${genreName}")`);
            link.textContent = genreName;
 
-           sidebarInner.querySelectorAll("sidebar-list")[0].
+           sidebarInner.querySelectorAll(".sidebar-list")[0].
            appendChild(link);
         }
 
