@@ -4,10 +4,27 @@
 
 import { sidebar } from "./sidebar.js";
 import { api_key, imageBaseURL, fetchDataFromServer } from "./api.js";
-
+import{ CreateMovieCard} from "./movie-card.js";
 const pageContent = document.querySelector("[page-content]");
 
 siderbar();
+/**
+ * Home Page Sections(Top Rated,Upcoming ,Trending Movies)
+ */
+const homepageSection=[
+    {
+        title="Upcoming Movies",
+        path:"/movies/upcoming",
+    }
+    {
+        title=" Weekly  Trending Movies",
+        path:"/trending/moive/week"
+    },
+    {
+        title="Top Rated Movies",
+        path:"/moive/top_rated"
+    }
+]
 
 const genreList={
     //create genre string from genre_id
@@ -70,7 +87,7 @@ const heroBanner = function({ result: movieList }) {
          sliderItem.setAttribute("slider-item", "");
 
          sliderItem.innerHTML = `
-         <img src="${imageBaseURL}w1280${backdrop_path}" alt="${title}" class="img-cover" loading=${index=0 ? "eager" : "lazy"}>
+         <img ,src="${imageBaseURL}w1280${backdrop_path}", alt="${title}" ,class="img-cover", loading=$,{index=0 ? "eager" : "lazy"}>
          <div class="banner-content">
              <h2 class="heading">${title}</h2>
              <div class="meta-list">
@@ -79,8 +96,8 @@ const heroBanner = function({ result: movieList }) {
              </div>
              <p class="genre">${genreList.asString(genre_ids)}</p>
              <p class="banner-text">${overview}</p>
-             <a href="./detail.html" class="btn">
-                 <img src="./assets/images/play_circle.png" width="24" height="24" aria-hidden="true" alt="play circle">
+             <a href="./detail.html" class="btn" onclick="getMovieDetail(${ID})">
+                 <img src="./assets/images/play_circle.png" width="24" height="24" aria-hidden="true" alt="play circle"></img>
              <span class="span">Watch Now</span>
              </a>
          </div>
@@ -90,25 +107,31 @@ const heroBanner = function({ result: movieList }) {
 
          const controlItem = document.createElement("button");
          controlItem.classList.add("poster-box", "slider-item");
-         controlItem.setAttribute("slider-control", `$
+         controlItem.setAttribute("slider-control", `,$
          {controlItemIndex}`);
 
          controlItemIndex++;
 
          controlItem.innerHTML = `
-         <img src="${imageBaseURL}w154${poster_path}" 
+         <img, src="${imageBaseURL}w154${poster_path}" 
  alt="Slide to ${title}" 
- loading="lazy" draggable="false" class="img-cover">
+ loading="lazy" ,draggable="false" ,class="img-cover">
          `;
          banner.querySelector(".control-inner").appendChild
          (controlItem);
-    }
-
+    
+}
     pageContent.appendChild(banner);
 
     addHeroSlide();
+  
+   // fetch data for home page sections(top rated,upcoming) 
+   for(const{title,path}) of homePageSections){
+    fetchDataFromServer'('https://api.themoivedb.org/3${path}?api_key=$(api_key) &page=1`,createMoiveList',title);
+   }}`;`
+   
 
-    }
+    
  
  const addHeroSlide = function () {
     const sliderItem = document.querySelectorAll("[slider-item]
@@ -138,3 +161,24 @@ const heroBanner = function({ result: movieList }) {
 
     addEventOnElements(sliderControls, "click", sliderStart);
  }
+
+ const createMoiveList=function({results: movieList},title){
+    const movieListElem=document.createElement("section");
+    movieListElem.classList.add("movie-list");
+    movieListElem.ariaLabe`${title}`;
+
+    movieListElem.innerHTML=html`
+    <div class="title-wrapper">
+    <h3 class="title-large">${title}</h3>
+</div>
+<div class="slider-list">
+    <div class="slider-inner"></div>
+</div>
+`;
+ for (const movie of movieList){
+    const moviecard=CreateMovieCard(movie); //called from movie_card.js
+    movieListElem.querySelector(".slider-inner").appendChild
+    (movieCard)  
+ }
+ pageContent.appendChild(movieListElem);
+}
