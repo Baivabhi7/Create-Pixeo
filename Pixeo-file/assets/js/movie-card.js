@@ -6,17 +6,20 @@ import {imageBaseURL} from "./api.js";
  * moive card
  */
 
-export function CreateMovieCard(movie){
+export function createMovieCard(movie){
   const{
     poster_path,
     title,
     vote_average,
+    release_date,
     id
-  }=movie;
+  } = movie;
+
   const card=document.createElement("div");
   card.classList.add("movie-card");
+
   card.innerHTML=html`
-  <figure class="poster box card-banner">
+  <figure class="poster-box card-banner">
       <img src="${imageBaseURL}w342${poster_path}" alt="${title}" class="img-cover" loading="lazy" alt="rating">
   </figure>
   <h4 class="title">${title}</h4>
@@ -27,7 +30,7 @@ export function CreateMovieCard(movie){
      </div>
   <div class="card-badge">${release_date.split("-")[0]}</div>
   </div>
-  <a href="./detail.html" class="card-btn"title="${title}" onclick="getMovieDetail(${id})></a>
+  <a href="./detail.html" class="card-btn" title="${title}" onclick="getMovieDetail(${id})"></a>
   `;
   return card;
   }
