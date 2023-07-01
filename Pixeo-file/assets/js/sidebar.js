@@ -17,7 +17,7 @@ export function sidebar() {
     const sidebarInner = document.createElement("div");
     sidebarInner.classList.add("sidebar-inner");
 
-    sidebarInner.innerHTML = html`
+    sidebarInner.innerHTML = `
     <div class="sidebar-list">
     <p class="title">Genre</p>
 
@@ -84,11 +84,9 @@ const genreLink = function() {
    const toggleSidebar = function(sidebar){
     //Toggle sidebar in mobile screen
 
-    constsidebarBtn = document.querySelector("[menu-btn]");
-    const sidebarTogglers = document.querySelectorAll("
-    [menu-toggler]");
-    const sidebarClose = document.querySelectorAll("
-    [menu-close]");
+    const sidebarBtn = document.querySelector("[menu-btn]");
+    const sidebarTogglers = document.querySelectorAll("[menu-toggler]");
+    const sidebarClose = document.querySelectorAll("[menu-close]");
     const overlay = document.querySelector("[overlay]");
 
     addEventOnElements(sidebarTogglers, "click", function() {

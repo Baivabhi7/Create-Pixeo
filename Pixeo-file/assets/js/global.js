@@ -20,5 +20,6 @@ addEventOnElements(searchTogglers, "click",function () {
  * store movieId in 'local storage' .
  * when you click any movie card
  */
-const getMovieDetail=function(movieId)
-window.localStorage.setItem("movieId",String(movieId));
+const getMovieDetail=function(movieId){
+    window.localStorage.setItem("movieId", String(movieId));
+}
