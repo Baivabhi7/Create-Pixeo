@@ -18,9 +18,9 @@ export function createMovieCard(movie){
   const card=document.createElement("div");
   card.classList.add("movie-card");
 
-  card.innerHTML=html`
+  card.innerHTML=`
   <figure class="poster-box card-banner">
-      <img src="${imageBaseURL}w342${poster_path}" alt="${title}" class="img-cover" loading="lazy" alt="rating">
+      <img src="${imageBaseURL}w342${poster_path}" alt="${title}" class="img-cover" loading="lazy">
   </figure>
   <h4 class="title">${title}</h4>
   <div class="meta-list">
