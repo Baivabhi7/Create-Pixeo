@@ -5,6 +5,7 @@
 import { sidebar } from "./sidebar.js";
 import { api_key, imageBaseURL, fetchDataFromServer } from "./api.js";
 import { createMovieCard } from "./movie-card.js";
+import { search } from "./search.js";
  
 const pageContent = document.querySelector("[page-content]");
 
@@ -173,7 +174,7 @@ const heroBanner = function({ results: movieList }) {
     movieListElem.classList.add("movie-list");
     movieListElem.ariaLabel = `${title}`;
 
-    movieListElem.innerHTML=html`
+    movieListElem.innerHTML= `
     <div class="title-wrapper">
        <h3 class="title-large">${title}</h3>
     </div>
@@ -182,9 +183,13 @@ const heroBanner = function({ results: movieList }) {
     </div>
     `;
  for (const movie of movieList){
-    const movieCard=createMovieList(movie); //called from movie_card.js
+    const movieCard = createMovieCard(movie); //called from movie_card.js
     movieListElem.querySelector(".slider-inner").appendChild
     (movieCard);  
  }
  pageContent.appendChild(movieListElem);
 }
+
+
+
+search();

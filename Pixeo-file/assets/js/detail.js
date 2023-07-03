@@ -3,6 +3,7 @@
 import { api_key, imageBaseURL, fetchDataFromServer } from "./api.js";
 import { sidebar } from "./sidebar.js";
 import { createMovieCard } from "./movie-card.js";
+import { search } from "./search.js";
 
 const movieId=window.localStorage.getItem("movieId");
 const pageContent=document.querySelector("[page-content]");
@@ -56,7 +57,7 @@ videos: { results: videos }
     const movieDetail=document.createElement("div");
     movieDetail.classList.add("movie-detail");
 
-    movieDetail.innerHTML=html`
+    movieDetail.innerHTML=`
     <div class="backdrop-image" style="background-image: url('${imageBaseURL}${"w1280" || "original"}${backdrop_path || poster_path}')"></div>
 
     <figure class="poster-box movie-poster">
@@ -112,7 +113,7 @@ videos: { results: videos }
       const videoCard=document.createElement("div");
       videoCard.classList.add("video-card");
 
-      videoCard.innerHTML=html`
+      videoCard.innerHTML=`
       <iframe width="500" height="294" src="https://www.youtube.com/embed/${key}?&theme=dark&color=white&rel=0" frameborder="0" allowfullscreen="1" title="${name}" class="img-cover" loading="lazy"></iframe>
       `;
       movieDetail.querySelector(".slider-inner").appendChild
@@ -130,7 +131,7 @@ const createMovieList = function({results: movieList},title){
     movieListElem.classList.add("movie-list");
     movieListElem.ariaLabel="You May Also Like";
 
-    movieListElem.innerHTML=html`
+    movieListElem.innerHTML=`
     <div class="title-wrapper">
     <h3 class="title-large">You May Also Like</h3>
 </div>
@@ -145,3 +146,7 @@ const createMovieList = function({results: movieList},title){
  }
  pageContent.appendChild(movieListElem);
 }
+
+
+
+search();
