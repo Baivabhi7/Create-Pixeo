@@ -34,7 +34,7 @@ fetchDataFromServer(`https://api.themoviedb.org/3/discover/movie?api_key=${api_k
     </div>
 
     <button class="btn load-more" load-more>Load More</button> 
-`;
+    `;
 
 
 /**
