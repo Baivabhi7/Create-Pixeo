@@ -35,7 +35,7 @@ const getDirectors=function (crewList){
 
 //return only trailers and teasers as array
 const filterVideos=function (videoList){
-    return videoList.filter (({type,site})=>(type==="Trailer" || type==="Teaser") && site==="Youtube");
+    return videoList.filter (({type,site}) => (type === "Trailer" || type === "Teaser") && site === "Youtube");
 }
 
 fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}&append_to_response=casts,videos,images,releases`,function(movie){
@@ -75,7 +75,7 @@ videos: { results: videos }
     <div class="seperator"></div>
     <div class="meta-item">${runtime}m</div>
     <div class="seperator"></div>
-    <div class="meta-item">${release_date.splir("-")[0]}</div>
+    <div class="meta-item">${release_date.split("-")[0]}</div>
     <div class="meta-item card-badge">${certification}</div>
     </div>
 
@@ -116,17 +116,14 @@ videos: { results: videos }
       videoCard.innerHTML=`
       <iframe width="500" height="294" src="https://www.youtube.com/embed/${key}?&theme=dark&color=white&rel=0" frameborder="0" allowfullscreen="1" title="${name}" class="img-cover" loading="lazy"></iframe>
       `;
-      movieDetail.querySelector(".slider-inner").appendChild
-      (videoCard);
+      movieDetail.querySelector(".slider-inner").appendChild(videoCard);
     }
 
       pageContent.appendChild(movieDetail);
-      fetchDataFromServer(`https://api.themoviedb.org/3/movie/
-      ${movieId}/recommendations?api_key=${api_key}&page=1`,
-      addSuggestedMovies);
+      fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${api_key}&page=1`, addSuggestedMovies);
 });
 
-const createMovieList = function({results: movieList},title){
+const addSuggestedMovies = function({results: movieList}){
     const movieListElem=document.createElement("section");
     movieListElem.classList.add("movie-list");
     movieListElem.ariaLabel="You May Also Like";
@@ -141,8 +138,7 @@ const createMovieList = function({results: movieList},title){
 `;
  for (const movie of movieList){
     const movieCard=createMovieCard(movie); //called from movie_card.js
-    movieListElem.querySelector(".slider-inner").appendChild
-    (movieCard) ; 
+    movieListElem.querySelector(".slider-inner").appendChild(movieCard); 
  }
  pageContent.appendChild(movieListElem);
 }
