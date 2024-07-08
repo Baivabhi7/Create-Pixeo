@@ -131,7 +131,7 @@ const heroBanner = function({ results: movieList }) {
   
    // fetch data for home page sections(top rated,upcoming) 
    for (const {title, path } of homePageSections){
-    fetchDataFromServer(`https://api.themoviedb.org/3${path}?api_key=$(api_key)&page=1`, createMovieList, title);
+    fetchDataFromServer(`https://api.themoviedb.org/3${path}?api_key=${api_key}&page=1`, createMovieList, title);
    }
 }
    
@@ -154,7 +154,7 @@ const heroBanner = function({ results: movieList }) {
         lastSliderItem.classList.remove("active");
         lastSliderControl.classList.remove("active");
 
-        //this = slider-control
+        // this = slider-control
 
         sliderItems[Number(this.getAttribute("slider-control"))].
         classList.add("active");
@@ -167,7 +167,7 @@ const heroBanner = function({ results: movieList }) {
     addEventOnElements(sliderControls, "click", sliderStart);
  }
 
- const createMovieList=function({results: movieList},title){
+ const createMovieList = function({results: movieList},title){
     const movieListElem=document.createElement("section");
     movieListElem.classList.add("movie-list");
     movieListElem.ariaLabel = `${title}`;
@@ -184,7 +184,7 @@ const heroBanner = function({ results: movieList }) {
        const movieCard = createMovieCard(movie); //called from movie_card.js
        movieListElem.querySelector(".slider-inner").appendChild(movieCard);  
     }
- pageContent.appendChild(movieListElem);
+    pageContent.appendChild(movieListElem);
 }
 
 
