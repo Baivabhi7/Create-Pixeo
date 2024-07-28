@@ -47,7 +47,11 @@ const genreList={
     }
 };
 
+<<<<<<< HEAD
 fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`, function({genres}) {
+=======
+fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`, function ({genres}) {
+>>>>>>> f1372d8a1c28fd7015ee0b742bd237874c89a35c
     for(const {id, name } of genres){
         genreList[id] = name;
     }
@@ -128,7 +132,7 @@ const heroBanner = function({ results: movieList }) {
   
    // fetch data for home page sections(top rated,upcoming) 
    for (const {title, path } of homePageSections){
-    fetchDataFromServer(`https://api.themoivedb.org/3${path}?api_key=$(api_key)&page=1`, createMovieList, title);
+    fetchDataFromServer(`https://api.themoviedb.org/3${path}?api_key=$(api_key)&page=1`, createMovieList, title);
    }
 }
    
@@ -176,10 +180,17 @@ const heroBanner = function({ results: movieList }) {
        <div class="slider-inner"></div>
     </div>
     `;
+<<<<<<< HEAD
  for (const movie of movieList){
     const movieCard = createMovieCard(movie); //called from movie_card.js
     movieListElem.querySelector(".slider-inner").appendChild(movieCard);  
  }
+=======
+    for (const movie of movieList){
+       const movieCard = createMovieCard(movie); //called from movie_card.js
+       movieListElem.querySelector(".slider-inner").appendChild(movieCard);  
+    }
+>>>>>>> f1372d8a1c28fd7015ee0b742bd237874c89a35c
  pageContent.appendChild(movieListElem);
 }
 

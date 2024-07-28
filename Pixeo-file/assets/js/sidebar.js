@@ -16,42 +16,37 @@ export function sidebar() {
     const sidebarInner = document.createElement("div");
     sidebarInner.classList.add("sidebar-inner");
 
-    sidebarInner.innerHTML =`
+    sidebarInner.innerHTML = `
     <div class="sidebar-list">
     <p class="title">Genre</p>
 
     
-</div>
+    </div>
 
-<div class="sidebar-list">
+    <div class="sidebar-list">
     <p class="title">Language</p>
 
-    <a href="./movie-list.html" menu-close
-     class="sidebar-link" onclick='getMovieList("with_original_language=en", "English")'>English</a>
+    <a href="./movie-list.html" menu-close class="sidebar-link" onclick='getMovieList("with_original_language=en", "English")'>English</a>
 
-     <a href="./movie-list.html" menu-close
-     class="sidebar-link" onclick='getMovieList("with_original_language=hi", "Hindi")'>Hindi</a>
+     <a href="./movie-list.html" menu-close class="sidebar-link" onclick='getMovieList("with_original_language=hi", "Hindi")'>Hindi</a>
 
-     <a href="./movie-list.html" menu-close
-     class="sidebar-link" onclick='getMovieList("with_original_language=fr", "French")'>French</a>
+     <a href="./movie-list.html" menu-close class="sidebar-link" onclick='getMovieList("with_original_language=fr", "French")'>French</a>
 
-     <a href="./movie-list.html" menu-close
-     class="sidebar-link" onclick='getMovieList("with_original_language=de", "German")'>German</a>
+     <a href="./movie-list.html" menu-close class="sidebar-link" onclick='getMovieList("with_original_language=de", "German")'>German</a>
 
-     <a href="./movie-list.html" menu-close
-     class="sidebar-link" onclick='getMovieList("with_original_language=es", "Spanish")'>Spanish</a>
+     <a href="./movie-list.html" menu-close class="sidebar-link" onclick='getMovieList("with_original_language=es", "Spanish")'>Spanish</a>
 
      
-</div>
+    </div>
 
-<div class="sidebar-footer">
+    <div class="sidebar-footer">
     <p class="copyright">
         Copyright 2023: <a>Team Pixeo</a>
     </p>
 
-    <img src="./assets/images/tmdb-logo.svg" width="'130"
+    <img src="./assets/images/tmdb-logo.svg" width="130"
     height="17" alt="the movie database logo">
-</div>
+    </div>
 
     `;
     
