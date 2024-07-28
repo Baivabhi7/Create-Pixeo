@@ -47,14 +47,12 @@ const genreList={
     }
 };
 
-fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/
-list?api_key=${api_key}`, function ({genres}) {
+fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`, function({genres}) {
     for(const {id, name } of genres){
         genreList[id] = name;
     }
 
-    fetchDataFromServer(`https://api.themoviedb.org/3/movie/
-popular?api_key=${api_key}&page=1`, heroBanner);
+    fetchDataFromServer(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&page=1`, heroBanner);
 
     
 });
@@ -86,7 +84,7 @@ const heroBanner = function({ results: movieList }) {
             overview,
             poster_path,
             vote_average,
-            id,
+            id
         } = movie;
 
          const sliderItem = document.createElement("div");
@@ -110,21 +108,18 @@ const heroBanner = function({ results: movieList }) {
              </a>
          </div>
          `;
-         banner.querySelector(".banner-slider").appendChild
-         (sliderItem);
+         banner.querySelector(".banner-slider").appendChild(sliderItem);
 
          const controlItem = document.createElement("button");
          controlItem.classList.add("poster-box", "slider-item");
-         controlItem.setAttribute("slider-control", `,$
-         {controlItemIndex}`);
+         controlItem.setAttribute("slider-control", `${controlItemIndex}`);
 
          controlItemIndex++;
 
          controlItem.innerHTML = `
          <img, src="${imageBaseURL}w154${poster_path}" alt="Slide to ${title}" loading="lazy" draggable="false" class="img-cover">
          `;
-         banner.querySelector(".control-inner").appendChild
-         (controlItem);
+         banner.querySelector(".control-inner").appendChild(controlItem);
     
 }
     pageContent.appendChild(banner);
@@ -158,8 +153,7 @@ const heroBanner = function({ results: movieList }) {
 
         //this = slider-control
 
-        sliderItems[Number(this.getAttribute("slider-control"))].
-        classList.add("active");
+        sliderItems[Number(this.getAttribute("slider-control"))].classList.add("active");
         this.classList.add("active");
 
         lastSliderItem=sliderItems[Number(this.getAttribute("slider-control"))];
@@ -184,8 +178,7 @@ const heroBanner = function({ results: movieList }) {
     `;
  for (const movie of movieList){
     const movieCard = createMovieCard(movie); //called from movie_card.js
-    movieListElem.querySelector(".slider-inner").appendChild
-    (movieCard);  
+    movieListElem.querySelector(".slider-inner").appendChild(movieCard);  
  }
  pageContent.appendChild(movieListElem);
 }

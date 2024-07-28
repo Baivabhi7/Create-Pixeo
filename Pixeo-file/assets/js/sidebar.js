@@ -5,8 +5,7 @@ import { api_key, fetchDataFromServer } from "./api.js";
 export function sidebar() {
     const genreList={};
 
-    fetchDataFromServer(`https://api.themoviedb.org/3/genre/
-    movie/list?api_key=${api_key}`, function ({genres}) {
+    fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`, function ({genres}) {
         for(const {id, name } of genres){
             genreList[id] = name;
         }
@@ -60,8 +59,7 @@ export function sidebar() {
 
 const genreLink = function() {
 
-    for (const [genreId, genreName] of Object.entries
-        (genreList)) {
+    for (const [genreId, genreName] of Object.entries(genreList)) {
 
             const link = document.createElement("a");
             link.classList.add("sidebar-link");
@@ -88,13 +86,13 @@ const genreLink = function() {
     const sidebarClose = document.querySelectorAll("[menu-close]");
     const overlay = document.querySelector("[overlay]");
 
-    addEventOnElements(sidebarTogglers, "click", function() {
+    addEventOnElements(sidebarTogglers, "click", function(){
      sidebar.classList.toggle("active");
      sidebarBtn.classList.toggle("active");
      overlay.classList.toggle("active");
       });
 
-    addEventOnElements(sidebarClose, "click", function() {
+    addEventOnElements(sidebarClose, "click", function(){
         sidebar.classList.remove("active");
         sidebarBtn.classList.remove("active");
         overlay.classList.remove("active");
